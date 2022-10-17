@@ -1,0 +1,29 @@
+ 4344  export VAULT_ADDR="https://vault-cluster-primary-public-vault-fcbaf59f.0102985d.z1.hashicorp.cloud:8200"
+ 4345  export VAULT_TOKEN=hvs.CAESIDXLlZQeqgeXJrDrvUwMd8xVVzMrKrEL6lHuCtG-7B_NGicKImh2cy5BYUMyNWRzSUJQTlFpcUJWcXJDV3RqM3IuUnAzSEwQ4gI
+ 4346  export VAULT_NAMESPACE=admin
+ 4347  vault status
+ 4348  vault auth list
+ 4349  vault secrets enable -version=2 kv
+ 4350  vault kv put kv/test/ec2 api-key="ABCDEFG9876"
+ 4351  vault policy write vault-policy-for-aws-ec2role - << EOF\n# Grant 'read' permission to paths prefixed by 'kv/data/test/ec2'\npath "kv/data/test/ec2" {\n  capabilities = [ "read" ]\n}\nEOF\n
+ 4352  vault policy list
+ 4353  vault auth enable aws
+ 4354  vault auth list
+ 4355  vault write auth/aws/config/client secret_key=$TMP_VAULT_SECRET_KEY access_key=$TMP_VAULT_ACCESS_KEY
+ 4356  vault write auth/aws/role/vault-role-for-aws-ec2role \\n     auth_type=iam \\n     bound_iam_principal_arn=arn:aws:iam::<YourAWSAccountID>:role/aws-ec2role-for-vault-authmethod \\n     policies=vault-policy-for-aws-ec2role\n
+ 4357  vault write auth/aws/role/vault-role-for-aws-ec2role \\n     auth_type=iam \\n     bound_iam_principal_arn=arn:aws:iam::144830530561:role/aws-ec2role-for-vault-authmethod \\n     policies=vault-policy-for-aws-ec2role\n
+ 4358  export AWS_SECRET_ACCESS_KEY=yea8Pb7L2twCjwVgWH3ukH+BBxqUVvyim3Ubb0OE
+ 4359  export AWS_ACCESS_KEY_ID=AKIA3SCJYFFCJ4X7EZ4Q
+ 4360  export AWS_SECRET_ACCESS_KEY=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
+ 4361  vault write auth/aws/role/vault-role-for-aws-ec2role \\n     auth_type=iam \\n     bound_iam_principal_arn=arn:aws:iam::144830530561:role/aws-ec2role-for-vault-authmethod \\n     policies=vault-policy-for-aws-ec2role\n
+ 4362  vault write auth/aws/role/vault-role-for-aws-ec2role \\n     auth_type=iam \\n     bound_iam_principal_arn=arn:aws:iam::144830530561:role/aws-ec2role-for-vault-authmethod \\n     policies=vault-policy-for-aws-lambdarole\n
+ 4363  vault write auth/aws/role/vault-role-for-aws-lambdarole \\n     auth_type=iam \\n     bound_iam_principal_arn=arn:aws:iam::144830530561:role/vault-lambda-extension-demo-lambda-role \\n     policies=vault-policy-for-aws-ec2role\n
+ 4364  export TMP_VAULT_SECRET_KEY=Yw1nRfLTPsDZMNbqWP+FfZ5wPaCn6XV7zoSo3B0j
+ 4365  export TMP_VAULT_ACCESS_KEY=AKIASDOESQQAS3E6Q56S
+ 4366  vault write auth/aws/config/client secret_key=$TMP_VAULT_SECRET_KEY access_key=$TMP_VAULT_ACCESS_KEY
+ 4367  vault write auth/aws/role/vault-role-for-aws-lambdarole \\n     auth_type=iam \\n     bound_iam_principal_arn=arn:aws:iam::144830530561:role/vault-lambda-extension-demo-lambda-role \\n     policies=vault-policy-for-aws-ec2role\n
+ 4368  vault write auth/aws/role/vault-role-for-aws-lambdarole \\n     auth_type=iam \\n     bound_iam_principal_arn=arn:aws:iam::<YourAWSAccountID>:role/aws-lambdarole-for-vault-authmethod \\n     policies=vault-policy-for-aws-ec2role\n
+ 4369  vault write auth/aws/role/vault-role-for-aws-lambdarole \\n     auth_type=iam \\n     bound_iam_principal_arn=arn:aws:iam::144830530561:role/aws-lambdarole-for-vault-authmethod \\n     policies=vault-policy-for-aws-ec2role\n
+ 4370  vault list /auth/aws/role
+ 4371  vault read auth/aws/role/vault-role-for-aws-lambdarole
+ 4372  vault write auth/aws/role/vault-role-for-aws-lambdarole \\n     auth_type=iam \\n     bound_iam_principal_arn=arn:aws:iam::144830530561:role/vault-lambda-extension-demo-lambda-role \\n     policies=vault-policy-for-aws-ec2role\n
