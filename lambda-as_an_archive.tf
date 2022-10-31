@@ -57,12 +57,12 @@ resource "aws_lambda_function" "function" {
   environment {
     variables = {
       // this will need to be updated for HCP vault
-      VAULT_ADDR           = "${hcp_vault_cluster.primary_cluster.vault_public_endpoint_url}",
-      VAULT_AUTH_ROLE      = "vault-role-for-aws-lambdarole" # aws_iam_role.lambda.name,
-      VAULT_AUTH_PROVIDER  = "aws",
-      VAULT_SECRET_PATH_ =  "kv/data/test/lambda" 
-      VAULT_SECRET_FILE = "/tmp/vault_secret.json",
-      VAULT_NAMESPACE      = "admin",
+      VAULT_ADDR          = "${hcp_vault_cluster.primary_cluster.vault_public_endpoint_url}",
+      VAULT_AUTH_ROLE     = "vault-role-for-aws-lambdarole" # aws_iam_role.lambda.name,
+      VAULT_AUTH_PROVIDER = "aws",
+      VAULT_SECRET_PATH_  = "kv/data/test/lambda"
+      VAULT_SECRET_FILE   = "/tmp/vault_secret.json",
+      VAULT_NAMESPACE     = "admin",
     }
   }
 }
