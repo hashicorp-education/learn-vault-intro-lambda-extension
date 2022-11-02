@@ -66,17 +66,3 @@ resource "aws_lambda_function" "function" {
     }
   }
 }
-
-output "lambda" {
-  value = <<EOF
-
-The lambda function is ready to run.
-
-    aws lambda invoke --function-name ${aws_lambda_function.function.function_name} /dev/null \
-        --log-type Tail \
-        --region ${var.aws_region} \
-        | jq -r '.LogResult' \
-        | base64 --decode
-
-EOF
-}
