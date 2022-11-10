@@ -1,3 +1,6 @@
+// Configure the provider 
+provider "hcp" {}
+
 resource "time_sleep" "wait_30_primary" {
   depends_on      = [hcp_vault_cluster.primary_cluster]
   create_duration = "30s"

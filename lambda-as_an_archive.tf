@@ -1,3 +1,7 @@
+# Configure the AWS Provider
+provider "aws" {
+}
+
 
 # Vault Client (Lambda function) IAM Config
 resource "aws_iam_instance_profile" "lambda" {
